@@ -1,6 +1,6 @@
-import Phaser from 'phaser';
+import * as Phaser from 'phaser';
 import logoImg from './assets/jc.png';
-
+import  "./index.css";
 class MyGame extends Phaser.Scene
 {
     constructor ()
