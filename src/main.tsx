@@ -1,39 +1,30 @@
-import * as Phaser from 'phaser';
-import logoImg from './assets/jc.png';
-import  "./index.css";
-class MyGame extends Phaser.Scene
-{
-    constructor ()
-    {
-        super();
-    }
+import * as Phaser from "phaser";
+import MainMenuScene from "./menu";
+import { useEffect, useRef } from "react";
 
-    preload ()
-    {
-        this.load.image('logo', logoImg);
+function Main() {
+  const config = {
+    type: Phaser.AUTO,
+    parent: "phaserGame",
+    width: 900,
+    height: 700,
+    backgroundColor: "#2e006c",
+    scene: MainMenuScene,
+  };
+  const phaserGameRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (phaserGameRef.current) {
+      return;
     }
-      
-    create ()
-    {
-        const logo = this.add.image(400, 150, 'logo');
-      
-        this.tweens.add({
-            targets: logo,
-            y: 450,
-            duration: 2000,
-            ease: "Power2",
-            yoyo: true,
-            loop: -1
-        });
-    }
+    phaserGameRef.current = new Phaser.Game(config);
+    return () => {
+        phaserGameRef.current.destroy(true);
+        phaserGameRef.current = null;
+      };
+  }, []);
+
+  return <div id="phaserGame" key="phaserGame" />;
 }
 
-const config = {
-    type: Phaser.AUTO,
-    parent: 'phaser-example',
-    width: 800,
-    height: 600,
-    scene: MyGame
-};
-
-const game = new Phaser.Game(config);
+export default Main;
