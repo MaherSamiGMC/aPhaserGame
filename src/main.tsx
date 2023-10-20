@@ -1,15 +1,31 @@
-import * as Phaser from "phaser";
+import Phaser from "phaser";
+import { useRef, useEffect } from "react";
 import MainMenuScene from "./menu";
-import { useEffect, useRef } from "react";
+import GridEngine from "grid-engine";
 
 function Main() {
   const config = {
     type: Phaser.AUTO,
     parent: "phaserGame",
-    width: 900,
-    height: 700,
+    width: 800,
+    height: 600,
     backgroundColor: "#2e006c",
+    physics: {
+      default: "arcade",
+    },
+    plugins: {
+      scene: [
+        {
+          key: "gridEngine",
+          plugin: GridEngine,
+          mapping: "gridEngine",
+        },
+      ],
+    },
     scene: MainMenuScene,
+    scale: {
+      mode: Phaser.Scale.ScaleModes.RESIZE, // Activez le mode de redimensionnement
+    },
   };
   const phaserGameRef = useRef<any>(null);
 
@@ -19,13 +35,12 @@ function Main() {
     }
     phaserGameRef.current = new Phaser.Game(config);
     return () => {
-        phaserGameRef.current.destroy(true);
-        phaserGameRef.current = null;
-      };
+      phaserGameRef.current.destroy(true);
+      phaserGameRef.current = null;
+    };
   }, []);
 
   return <div id="phaserGame" key="phaserGame" />;
 }
 
 export default Main;
-

@@ -1,6 +1,6 @@
 import * as Phaser from "phaser";
-import glassPanel from "./assets/menu_assets/PNG/glassPanel.png";
-import cursorHand from "./assets/menu_assets/PNG/bomb.png";
+import glassPanel from "./game/assets/menu_assets/PNG/glassPanel.png";
+import cursorHand from "./game/assets/menu_assets/PNG/bomb.png";
 import  "./index.css";
 
 export default class MainMenuScene extends Phaser.Scene {

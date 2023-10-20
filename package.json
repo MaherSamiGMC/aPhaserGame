@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.3",
     "beautiful-react-hooks": "^5.0.0",
+    "classnames": "^2.3.2",
+    "grid-engine": "^2.38.1",
     "phaser": "^3.60.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -24,6 +28,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "sass": "^1.69.4",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
