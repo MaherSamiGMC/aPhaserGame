@@ -29,6 +29,3 @@ function Main() {
 
 export default Main;
 
-const containerHTML = document.getElementById("root") as HTMLElement;
-const root = createRoot(containerHTML);
-root.render(<App />);
