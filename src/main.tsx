@@ -10,9 +10,8 @@ function Main() {
   const config = {
     type: Phaser.AUTO,
     parent: "phaserGame",
-    width: 800,
-    height: 600,
-   // backgroundColor: "#2e006c",
+    
+    backgroundColor: "#2e006c",
     physics: {
       default: "arcade",
     },
