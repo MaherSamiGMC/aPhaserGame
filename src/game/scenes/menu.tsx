@@ -2,8 +2,8 @@ import * as Phaser from "phaser";
 import glassPanel from "../../game/assets/menu_assets/PNG/glassPanel.png";
 import cursorHand from "../../game/assets/menu_assets/PNG/bomb.png";
 import  "../../index.css";
-import mainMapaJson from '../../game/assets/sprites/maps/tilesets/tileset.json';
-import tilesetImage from '../../game/assets/sprites/maps/tilesets/dungeon_tiles.png';
+import mainMapaJson from '../../game/assets/sprites/maps/tilesets/cloud_city.json';
+import tilesetImage from '../../game/assets/sprites/maps/tilesets/cloud_tileset.png';
 
 export default class MainMenuScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -27,9 +27,17 @@ export default class MainMenuScene extends Phaser.Scene {
   }
 
   create() {
-    const map = this.make.tilemap({ key: 'mapKey' });
-    const tileset= map.addTilesetImage('dungeon', 'tileset');
-     map.createLayer('Ground', tileset as Phaser.Tilemaps.Tileset )
+    // const map = this.make.tilemap({ key: 'mapKey' });
+    // const tileset= map.addTilesetImage('dungeon', 'tileset');
+    //  map.createLayer('Ground', tileset as Phaser.Tilemaps.Tileset )
+    const cloudCityTilemap = this.make.tilemap({ key: "mapKey" });
+  cloudCityTilemap.addTilesetImage("Cloud City", "tileset");
+  for (let i = 0; i < cloudCityTilemap.layers.length; i++) {
+    const layer = cloudCityTilemap
+      .createLayer(i, "Cloud City", 0, 0)
+    layer?.setDepth(i);
+    {layer ? layer.scale = 1 : null}
+  }
     const { width, height } = this.scale;
 
     this.add.text(width * 0.5, height * 0.3, '<BOMBERMAN GAME ALIKE>', {
