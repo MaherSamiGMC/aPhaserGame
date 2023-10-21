@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { useRef, useEffect } from "react";
 import MainMenuScene from "./menu";
 import GridEngine from "grid-engine";
+import GameScene from "./game/scenes/GameScene";
 
 function Main() {
   const config = {
@@ -9,7 +10,7 @@ function Main() {
     parent: "phaserGame",
     width: 800,
     height: 600,
-    backgroundColor: "#2e006c",
+   // backgroundColor: "#2e006c",
     physics: {
       default: "arcade",
     },

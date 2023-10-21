@@ -1,12 +1,12 @@
 import { GameObjects } from 'phaser';
 
 export const createInteractiveGameObject = (
-    scene,
-    x,
-    y,
-    width,
-    height,
-    name,
+    scene: Phaser.Scene,
+    x: number ,
+    y: number ,
+    width: number ,
+    height: number ,
+    name: string,
     isDebug = false,
     origin = { x: 0, y: 1 }
 ) => {
