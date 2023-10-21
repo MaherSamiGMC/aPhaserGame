@@ -1,10 +1,10 @@
 import Phaser from "phaser";
 import { useRef, useEffect } from "react";
-import MainMenuScene from "./scenes/menu_scenes/menu";
+import MainMenuScene from "./game/scenes/menu";
 import GridEngine from "grid-engine";
-import GameScene from "./game/scenes/GameScene";
-import HowToPlayModalScene from "./scenes/menu_scenes/HowToPlayModalScene";
-import CreditScene from "./scenes/menu_scenes/Credits";
+// import GameScene from "./game/scenes/GameScene";
+import HowToPlayModalScene from "./game/scenes/HowToPlayModalScene";
+import CreditScene from "./game/scenes/Credits";
 
 function Main() {
   const config = {
@@ -26,7 +26,7 @@ function Main() {
     },
     scene: [MainMenuScene,HowToPlayModalScene,CreditScene],
     scale: {
-      mode: Phaser.Scale.ScaleModes.RESIZE, // Activez le mode de redimensionnement
+      mode: Phaser.Scale.ScaleModes.FIT, // Activez le mode de redimensionnement
     },
   };
   const phaserGameRef = useRef<Phaser.Game | null>(null);
