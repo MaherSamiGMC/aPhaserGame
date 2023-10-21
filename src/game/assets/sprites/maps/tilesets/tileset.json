@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"dungeon-01.json"
+         "format":"json"
         }
     },
  "height":100,
