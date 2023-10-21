@@ -81,10 +81,12 @@ export default class MainMenuScene extends Phaser.Scene {
 
     settingsButton.on("selected", () => {
         this.scene.launch('HowToPlayModalScene');
+        this.scene.pause()
     });
 
     creditsButton.on("selected", () => {
         this.scene.launch('Credit');
+        this.scene.pause()
     });
   }
 
@@ -143,5 +145,3 @@ export default class MainMenuScene extends Phaser.Scene {
     }
   }
 }
-
-

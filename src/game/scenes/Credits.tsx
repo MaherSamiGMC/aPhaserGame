@@ -6,7 +6,8 @@ class CreditScene extends Phaser.Scene {
   }
 
   create() {
-    this.cameras.main.setViewport(200, 100, 500, 500)
+    const widthOfPrevScene = this.scene.get("main-menu").game.config.width;
+    this.cameras.main.setViewport((widthOfPrevScene as number-600)/2, 100, 600, 500)
     const sceneWidth = this.cameras.main.width;
     const sceneHeight = this.cameras.main.height;
     // Add the modal background
@@ -35,6 +36,7 @@ class CreditScene extends Phaser.Scene {
     // Close the modal when clicking anywhere on the screen
     this.input.keyboard?.on('keydown', () => {
       this.scene.stop();
+      this.scene.resume('main-menu')
     });
   }
 }
