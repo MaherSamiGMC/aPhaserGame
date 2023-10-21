@@ -29,8 +29,7 @@ export default class MainMenuScene extends Phaser.Scene {
   create() {
     const map = this.make.tilemap({ key: 'mapKey' });
     const tileset= map.addTilesetImage('dungeon', 'tileset');
-    console.log(tileset);
-    const backgroundLayer = map.createLayer('Ground', tileset);
+     map.createLayer('Ground', tileset as Phaser.Tilemaps.Tileset )
     const { width, height } = this.scale;
 
     this.add.text(width * 0.5, height * 0.3, '<BOMBERMAN GAME ALIKE>', {
