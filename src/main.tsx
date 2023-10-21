@@ -2,9 +2,9 @@ import Phaser from "phaser";
 import { useRef, useEffect } from "react";
 import MainMenuScene from "./game/scenes/menu";
 import GridEngine from "grid-engine";
-// import GameScene from "./game/scenes/GameScene";
 import HowToPlayModalScene from "./game/scenes/HowToPlayModalScene";
 import CreditScene from "./game/scenes/Credits";
+import MainGameScene from "./game/scenes/mainGameScene";
 
 function Main() {
   const config = {
@@ -24,7 +24,7 @@ function Main() {
         },
       ],
     },
-    scene: [MainMenuScene,HowToPlayModalScene,CreditScene],
+    scene: [MainMenuScene,HowToPlayModalScene,CreditScene,MainGameScene],
     scale: {
       mode: Phaser.Scale.ScaleModes.FIT, // Activez le mode de redimensionnement
     },

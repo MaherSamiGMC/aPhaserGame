@@ -83,7 +83,7 @@ export default class MainMenuScene extends Phaser.Scene {
     this.selectButton(0);
 
     playButton.on("selected", () => {
-      console.log("play");
+      this.scene.start('main-game')
     });
 
     settingsButton.on("selected", () => {
