@@ -11,7 +11,7 @@ function Main() {
     type: Phaser.AUTO,
     parent: "phaserGame",
     
-    backgroundColor: "#2e006c",
+    // backgroundColor: "#2e006c",
     physics: {
       default: "arcade",
     },
