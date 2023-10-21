@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-import glassPanel from "../../assets/menu_assets/PNG/glassPanel.png";
+import glassPanel from "../../assets/menu_assets/";
 import cursorHand from "../../assets/menu_assets/PNG/bomb.png";
 import  "../../index.css";
 
@@ -81,10 +81,12 @@ export default class MainMenuScene extends Phaser.Scene {
 
     settingsButton.on("selected", () => {
         this.scene.launch('HowToPlayModalScene');
+        this.scene.pause();
     });
 
     creditsButton.on("selected", () => {
         this.scene.launch('Credit');
+        this.scene.pause();
     });
   }
 
