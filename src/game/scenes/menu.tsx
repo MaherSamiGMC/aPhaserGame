@@ -22,16 +22,12 @@ export default class MainMenuScene extends Phaser.Scene {
   preload() {
     this.load.image("glass-panel", glassPanel);
     this.load.image("cursor-hand", cursorHand);
-    // this.load.tilemapTiledJSON('mapKey', mainMapaJson);
-    // this.load.image('tileset', tilesetImage);
+    this.load.tilemapTiledJSON('mapKey', mainMapaJson);
+    this.load.image('tileset', tilesetImage);
   }
 
   create() {
-    // const map = this.make.tilemap({ key: 'mapKey' });
-    // const tileset= map.addTilesetImage('tileset', 'tileset');
-    // map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset )
-    //  map.createLayer('water', tileset as Phaser.Tilemaps.Tileset )
-     
+
     const { width, height } = this.scale;
 
     this.add.text(width * 0.5, height * 0.3, '<BOMBERMAN GAME ALIKE>', {
