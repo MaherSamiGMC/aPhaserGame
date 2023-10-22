@@ -6,6 +6,7 @@ import { GridPhysics } from "./utils/GridPhysics";
 import mainMapaJson from "../../game/assets/sprites/maps/tilesets/tileset.json";
 import tilesetImage from "../../game/assets/sprites/maps/tilesets/dungeon_tiles.png";
 import { Direction } from "./utils/Direction";
+import Bomb from "./utils/Bomb";
 
 export default class MainGameScene extends Phaser.Scene {
   static readonly TILE_SIZE = 48;
@@ -40,9 +41,9 @@ export default class MainGameScene extends Phaser.Scene {
       firstPlayerSprite,
       new Phaser.Math.Vector2(6, 6)
     );
-    this.gridPhysics = new GridPhysics(Firstplayer,map);
+    this.gridPhysics = new GridPhysics(Firstplayer, map);
     this.gridControls = new GridControls(this.input, this.gridPhysics);
-    
+
     this.createPlayerAnimation(Direction.UP, 90, 92);
     this.createPlayerAnimation(Direction.RIGHT, 78, 80);
     this.createPlayerAnimation(Direction.DOWN, 54, 56);
