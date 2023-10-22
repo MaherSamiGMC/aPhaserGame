@@ -28,9 +28,10 @@ export default class MainGameScene extends Phaser.Scene {
   }
   create() {
     // add map :
-    const map = this.make.tilemap({ key: "mapKey" });
-    const tileset = map.addTilesetImage("dungeon", "tileset");
-    map.createLayer("Ground", tileset as Phaser.Tilemaps.Tileset);
+    const map = this.make.tilemap({ key: 'mapKey' });
+    const tileset= map.addTilesetImage('tileset', 'tileset');
+    map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset )
+     map.createLayer('water', tileset as Phaser.Tilemaps.Tileset )
     //add played :
     const firstPlayerSprite = this.add.sprite(0, 0, "firstPlayer");
     firstPlayerSprite.setDepth(2);
