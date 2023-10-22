@@ -27,14 +27,10 @@ export default class MainGameScene extends Phaser.Scene {
   }
   create() {
     // add map :
-       const cloudCityTilemap = this.make.tilemap({ key: "mapKey" });
-  cloudCityTilemap.addTilesetImage("Cloud City", "tileset");
-  for (let i = 0; i < cloudCityTilemap.layers.length; i++) {
-    const layer = cloudCityTilemap
-      .createLayer(i, "Cloud City", 0, 0)
-    layer?.setDepth(i);
-    {layer ? layer.scale = 3 : null}
-  }
+    const map = this.make.tilemap({ key: 'mapKey' });
+    const tileset= map.addTilesetImage('tileset', 'tileset');
+    map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset )
+     map.createLayer('water', tileset as Phaser.Tilemaps.Tileset )
     //add played :
     const firstPlayerSprite = this.add.sprite(0, 0, "firstPlayer");
     firstPlayerSprite.setDepth(2);
@@ -45,7 +41,7 @@ export default class MainGameScene extends Phaser.Scene {
       firstPlayerSprite,
       new Phaser.Math.Vector2(6, 6)
     );
-    this.gridPhysics = new GridPhysics(Firstplayer,cloudCityTilemap);
+    this.gridPhysics = new GridPhysics(Firstplayer,map);
     this.gridControls = new GridControls(this.input, this.gridPhysics);
     
     this.createPlayerAnimation(Direction.UP, 90, 92);
