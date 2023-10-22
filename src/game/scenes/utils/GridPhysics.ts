@@ -102,7 +102,7 @@ export class GridPhysics {
     this.movementDirection = Direction.NONE;
   }
   private getPixelsToWalkThisUpdate(delta: number): number {
-    const deltaInSeconds = delta / 1000;
+    const deltaInSeconds = delta / 500 ;
     return this.speedPixelsPerSecond * deltaInSeconds;
   }
   private willCrossTileBorderThisUpdate(

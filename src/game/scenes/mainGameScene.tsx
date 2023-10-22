@@ -9,7 +9,7 @@ import { Direction } from "./utils/Direction";
 import Bomb from "./utils/Bomb";
 
 export default class MainGameScene extends Phaser.Scene {
-  static readonly TILE_SIZE = 48;
+  static readonly TILE_SIZE = 16;
   private gridControls: GridControls;
   private gridPhysics: GridPhysics;
   constructor() {
@@ -30,12 +30,22 @@ export default class MainGameScene extends Phaser.Scene {
     // add map :
     const map = this.make.tilemap({ key: 'mapKey' });
     const tileset= map.addTilesetImage('tileset', 'tileset');
-    map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset )
-     map.createLayer('water', tileset as Phaser.Tilemaps.Tileset )
+    map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset,0,0 )
+     map.createLayer('water', tileset as Phaser.Tilemaps.Tileset,0,0 )
+     map.createLayer('object', tileset as Phaser.Tilemaps.Tileset,0,0 )
+      // Ajoutez les layers à la scène
+   // this.add.existing(groundLayer);
+   // this.add.existing(waterLayer);
+
+    // Configurez la caméra
+//     this.cameras.main.scrollX = -map.widthInPixels / 2;
+// this.cameras.main.scrollY = -map.heightInPixels / 2;
+     this.cameras.main.setBounds(-100, 0, map.widthInPixels, map.heightInPixels);
+  // this.cameras.main.centerToBounds();
     //add played :
     const firstPlayerSprite = this.add.sprite(0, 0, "firstPlayer");
     firstPlayerSprite.setDepth(2);
-    firstPlayerSprite.scale = 2;
+    firstPlayerSprite.scale = 1 ;
     this.cameras.main.startFollow(firstPlayerSprite);
     this.cameras.main.roundPixels = true;
     const Firstplayer = new Player(
