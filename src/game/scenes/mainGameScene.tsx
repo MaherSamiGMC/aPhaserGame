@@ -3,16 +3,21 @@ import characters from "../assets/characters/characters.png";
 import { Player } from "./utils/Player";
 import { GridControls } from "./utils/GridControls";
 import { GridPhysics } from "./utils/GridPhysics";
-import mainMapaJson from "../../game/assets/sprites/maps/tilesets/tileset.json";
-import tilesetImage from "../../game/assets/sprites/maps/tilesets/dungeon_tiles.png";
+import mainMapaJson from '../../game/assets/sprites/maps/tilesets/map.json';
+import tilesetImage from '../../game/assets/sprites/maps/tilesets/tileset.png';
+import objeto from '../../game/assets/images/heart_container.png';
 import { Direction } from "./utils/Direction";
 
 export default class MainGameScene extends Phaser.Scene {
   static readonly TILE_SIZE = 16;
   private gridControls: GridControls;
   private gridPhysics: GridPhysics;
+  bullets;
+  player;
+  spacebar;
   constructor() {
     super("main-game");
+    
   }
 
   init() {}
@@ -24,6 +29,7 @@ export default class MainGameScene extends Phaser.Scene {
     });
     this.load.tilemapTiledJSON("mapKey", mainMapaJson);
     this.load.image("tileset", tilesetImage);
+    this.load.image("bullet", objeto);
   }
   create() {
     // add map :
@@ -43,6 +49,7 @@ export default class MainGameScene extends Phaser.Scene {
   // this.cameras.main.centerToBounds();
     //add played :
     const firstPlayerSprite = this.add.sprite(0, 0, "firstPlayer");
+    this.player = firstPlayerSprite;
     firstPlayerSprite.setDepth(2);
     firstPlayerSprite.scale = 1 ;
     this.cameras.main.startFollow(firstPlayerSprite);
@@ -58,11 +65,66 @@ export default class MainGameScene extends Phaser.Scene {
     this.createPlayerAnimation(Direction.RIGHT, 78, 80);
     this.createPlayerAnimation(Direction.DOWN, 54, 56);
     this.createPlayerAnimation(Direction.LEFT, 66, 68);
+    class Bullet extends Phaser.GameObjects.Image
+   
+    { 
+      speed;
+     // player;
+        constructor (scene)
+        {
+            super(scene, 0, 0, 'bullet');
+
+            this.speed = Phaser.Math.GetSpeed(600, 1);
+        }
+
+        fire (x, y)
+        {
+            this.setPosition(x, y);
+
+            this.setActive(true);
+            this.setVisible(true);
+        }
+
+        update (time, delta)
+        {
+            this.x += this.speed * delta;
+
+            if (this.x > 820)
+            {
+                this.setActive(false);
+                this.setVisible(false);
+            }
+        }
+    }
+
+    this.bullets = this.add.group({
+        classType: Bullet,
+        maxSize: 30,
+        runChildUpdate: true
+    });
+
+    
+
+     // this.player = this.add.image(100, 300, objeto).setDepth(1000);
+
+    this.spacebar = this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+
+
   }
 
   update(_time: number, delta: number) {
     this.gridControls.update();
     this.gridPhysics.update(delta);
+    if (Phaser.Input.Keyboard.JustDown(this.spacebar))
+    {
+        const bullet = this.bullets.get();
+
+        if (bullet)
+        {
+            bullet.fire(this.player.x, this.player.y);
+        }
+    }
   }
   private createPlayerAnimation(
     name: string,
