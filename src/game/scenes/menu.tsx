@@ -2,8 +2,8 @@ import * as Phaser from "phaser";
 import glassPanel from "../../game/assets/menu_assets/PNG/glassPanel.png";
 import cursorHand from "../../game/assets/menu_assets/PNG/bomb.png";
 import  "../../index.css";
-import mainMapaJson from '../../game/assets/sprites/maps/tilesets/tileset.json';
-import tilesetImage from '../../game/assets/sprites/maps/tilesets/dungeon_tiles.png';
+import mainMapaJson from '../../game/assets/sprites/maps/tilesets/map.json';
+import tilesetImage from '../../game/assets/sprites/maps/tilesets/tileset.png';
 
 export default class MainMenuScene extends Phaser.Scene {
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -22,14 +22,16 @@ export default class MainMenuScene extends Phaser.Scene {
   preload() {
     this.load.image("glass-panel", glassPanel);
     this.load.image("cursor-hand", cursorHand);
-    this.load.tilemapTiledJSON('mapKey', mainMapaJson);
-    this.load.image('tileset', tilesetImage);
+    // this.load.tilemapTiledJSON('mapKey', mainMapaJson);
+    // this.load.image('tileset', tilesetImage);
   }
 
   create() {
-    const map = this.make.tilemap({ key: 'mapKey' });
-    const tileset= map.addTilesetImage('dungeon', 'tileset');
-     map.createLayer('Ground', tileset as Phaser.Tilemaps.Tileset )
+    // const map = this.make.tilemap({ key: 'mapKey' });
+    // const tileset= map.addTilesetImage('tileset', 'tileset');
+    // map.createLayer('ground', tileset as Phaser.Tilemaps.Tileset )
+    //  map.createLayer('water', tileset as Phaser.Tilemaps.Tileset )
+     
     const { width, height } = this.scale;
 
     this.add.text(width * 0.5, height * 0.3, '<BOMBERMAN GAME ALIKE>', {
