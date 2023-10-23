@@ -98,7 +98,7 @@ export default class MainGameScene extends Phaser.Scene {
             maxSize: 1,
             runChildUpdate: true,
         })
-        theBomb.getChildren()[0].setScale(2);
+        // theBomb.getChildren()[0].setScale(2);
         // Define spacebar input
         this.spacebar = this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
