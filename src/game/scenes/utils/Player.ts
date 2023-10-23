@@ -17,6 +17,7 @@ export class Player {
     );
     this.sprite.setFrame(55);
   }
+  //Functions to move the player 
   getPosition(): Phaser.Math.Vector2 {
     return this.sprite.getBottomCenter();
   }
@@ -42,4 +43,5 @@ export class Player {
   setTilePos(tilePosition: Phaser.Math.Vector2): void {
     this.tilePos = tilePosition.clone();
   }
+
 }

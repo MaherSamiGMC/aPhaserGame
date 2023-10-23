@@ -5,14 +5,15 @@ import { GridControls } from "./utils/GridControls";
 import { GridPhysics } from "./utils/GridPhysics";
 import mainMapaJson from '../../game/assets/sprites/maps/tilesets/map.json';
 import tilesetImage from '../../game/assets/sprites/maps/tilesets/tileset.png';
-import objeto from '../../game/assets/images/heart_container.png';
+import bomb from '../../game/assets/objects/Icons_31.png';
 import { Direction } from "./utils/Direction";
+import Bomb from "./utils/Bomb";
 
 export default class MainGameScene extends Phaser.Scene {
     static readonly TILE_SIZE = 16;
     private gridControls: GridControls | undefined;
     private gridPhysics: GridPhysics | undefined;
-    private bullets: Phaser.GameObjects.Group | undefined;
+    private bomb: Phaser.GameObjects.Group | undefined;
     private player: Phaser.GameObjects.Sprite | undefined;
     private spacebar: Phaser.Input.Keyboard.Key | undefined;
 
@@ -33,7 +34,7 @@ export default class MainGameScene extends Phaser.Scene {
         });
         this.load.tilemapTiledJSON("mapKey", mainMapaJson);
         this.load.image("tileset", tilesetImage);
-        this.load.image("bullet", objeto);
+        this.load.image("bomb", bomb);
     }
 
     // Create game elements
@@ -68,16 +69,15 @@ export default class MainGameScene extends Phaser.Scene {
         this.createPlayerAnimation(Direction.DOWN, 54, 56);
         this.createPlayerAnimation(Direction.LEFT, 66, 68);
 
-        // Define Bullet class
-        class Bullet extends Phaser.GameObjects.Image {
+        // Define bomb class
+        class Bomb extends Phaser.GameObjects.Image {
             speed;
-
-            constructor(scene) {
-                super(scene, 0, 0, 'bullet');
-                this.speed = Phaser.Math.GetSpeed(600, 1);
+            constructor(scene:any) {
+                super(scene, 0, 0, 'bomb');
+                this.speed = Phaser.Math.GetSpeed(0, 1);
             }
 
-            fire(x, y) {
+            fire(x:number, y:number) {
                 this.setPosition(x, y);
                 this.setActive(true);
                 this.setVisible(true);
@@ -92,13 +92,13 @@ export default class MainGameScene extends Phaser.Scene {
             }
         }
 
-        // Create a group of bullets
-        this.bullets = this.add.group({
-            classType: Bullet,
-            maxSize: 30,
-            runChildUpdate: true
-        });
-
+        // Create  Bomb
+        const theBomb=this.bomb = this.add.group({
+            classType: Bomb,
+            maxSize: 1,
+            runChildUpdate: true,
+        })
+        // theBomb.getChildren()[0].setScale(2);
         // Define spacebar input
         this.spacebar = this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
@@ -108,8 +108,8 @@ export default class MainGameScene extends Phaser.Scene {
         this.gridControls?.update();
         this.gridPhysics?.update(delta);
 
-        if (Phaser.Input.Keyboard.JustDown(this.spacebar as  any)) {
-            const bullet = this.bullets?.get();
+        if (Phaser.Input.Keyboard.JustDown(this.spacebar as any)) {
+            const bullet = this.bomb?.get();
 
             if (bullet) {
                 bullet.fire(this.player?.x, this.player?.y);
