@@ -34,7 +34,7 @@ export default class MainGameScene extends Phaser.Scene {
         });
         this.load.tilemapTiledJSON("mapKey", mainMapaJson);
         this.load.image("tileset", tilesetImage);
-        this.load.image("bullet", objeto);
+        this.load.image("bomb", objeto);
     }
 
     // Create game elements
@@ -74,11 +74,11 @@ export default class MainGameScene extends Phaser.Scene {
             speed;
 
             constructor(scene) {
-                super(scene, 0, 0, 'bullet');
+                super(scene, 0, 0, 'bomb');
                 this.speed = Phaser.Math.GetSpeed(600, 1);
             }
 
-            fire(x, y) {
+            fire(x:number, y:number) {
                 this.setPosition(x, y);
                 this.setActive(true);
                 this.setVisible(true);
