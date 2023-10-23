@@ -81,6 +81,7 @@ export default class MainGameScene extends Phaser.Scene {
             constructor(scene:any) {
                 super(scene, 0, 0, 'bomb');
                 this.speed = Phaser.Math.GetSpeed(0, 1);
+                this.setScale(0.6)
             }
 
             fire(x:number, y:number) {
@@ -92,7 +93,7 @@ export default class MainGameScene extends Phaser.Scene {
                 setTimeout(() => {
                     this.setVisible(false);
                     this.scene.cameras.main.shake(200,0.02)
-                    const explode=this.scene.add.sprite(this.xPosition,this.yPosition-50,'explode')
+                    const explode=this.scene.add.sprite(this.xPosition,this.yPosition-50,'explode').setScale(0.7);
                     explode.anims.create({
                         key: "boom",
                         frameRate: 7,
