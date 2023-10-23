@@ -1,6 +1,7 @@
 import  mainGameScene  from "../mainGameScene";
 import { Direction } from "./Direction";
 
+
 export class Player {
   constructor(
     private sprite: Phaser.GameObjects.Sprite,
