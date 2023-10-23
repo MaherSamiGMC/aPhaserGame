@@ -105,14 +105,14 @@ export default class MainGameScene extends Phaser.Scene {
 
     // Update game state
     update(_time: number, delta: number) {
-        this.gridControls.update();
-        this.gridPhysics.update(delta);
+        this.gridControls?.update();
+        this.gridPhysics?.update(delta);
 
-        if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
-            const bullet = this.bullets.get();
+        if (Phaser.Input.Keyboard.JustDown(this.spacebar as  any)) {
+            const bullet = this.bullets?.get();
 
             if (bullet) {
-                bullet.fire(this.player.x, this.player.y);
+                bullet.fire(this.player?.x, this.player?.y);
             }
         }
     }
